@@ -31,9 +31,15 @@ if(command === 'init'){ // sudo
     warnLog(`\nsudo su ${username} -s /bin/bash\n`);
 
   } else { // 'linux-remote' user.
-    const manageMPath = require.resolve('@linux-remote/manage', {
-      paths: [ homeDir + '/node_modules']
-    });
+    let manageMPath;
+    if(process.env.NODE_ENV === 'debug'){
+      manageMPath = path.join(__dirname, '../manage/index.js');
+    } else {
+      manageMPath = require.resolve('@linux-remote/manage', {
+        paths: [ homeDir + '/node_modules']
+      });
+    }
+
 
     const managerHandler = require(manageMPath);
     if(command === '-v' || 

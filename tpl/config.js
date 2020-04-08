@@ -28,12 +28,5 @@ module.exports = {
   
   client: { // Server include client. 
     cdn: false // Is use https://unpkg.com to load client static file.
-  },
-  /*
-    // Or set a website origin string, enables CORS model. Server will not include client.
-    // recommend.
-    client: 'http://127.0.0.1:4000',
-  */
-  
-  //# xPoweredBy: undefined // Express setttings. is enables the "X-Powered-By: Express" HTTP header.
+  }
 };
