@@ -1,0 +1,30 @@
+{
+  "name": "@linux-remote/cli",
+  "version": "4.0.9",
+  "author": {
+    "name": "Du Wei",
+    "email": "hezedu@hotmail.com"
+  },
+  "bin": {
+    "linux-remote": "index.js"
+  },
+  "scripts": {
+    "publish": "node ../linux-remote/up-version-map.js"
+  },
+  "files": [
+    "lib",
+    "tpl",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:linux-remote/cli.git"
+  },
+  "license": "MPL-2.0",
+  "engines": {
+    "node": ">=12.14.0"
+  },
+  "email": "hezedu@hotmail.com",
+  "description": "Linux Web Remote Desktop.",
+  "dependencies": {}
+}
