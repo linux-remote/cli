@@ -9,7 +9,8 @@
     "linux-remote": "index.js"
   },
   "scripts": {
-    "publish": "node ../linux-remote/up-version-map.js"
+    "publish": "node ../linux-remote/up-version-map.js",
+    "p": "npm publish --access public"
   },
   "files": [
     "lib",
