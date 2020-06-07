@@ -10,7 +10,8 @@
   },
   "scripts": {
     "publish": "node ../linux-remote/up-version-map.js",
-    "p": "npm publish --access public"
+    "p": "npm publish --access public",
+    "ilint": "npm install babel-eslint eslint"
   },
   "files": [
     "lib",
