@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 "use strict";
+
+if(!process.env.NODE_ENV){
+  process.env.NODE_ENV = 'production';
+}
+
 const path = require('path');
 const os = require('os');
 const { username, homeDir } = require('./lib/constant.js');
-
-if(!process.env.NODE_ENV){
-  process.env.NODE_ENV = __dirname.indexOf(homeDir) === 0 ? 'production' : 'development';
-}
-
 
 const { warnLog } = require('./lib/util.js');
 
@@ -41,7 +41,7 @@ if(command === 'init'){ // sudo
       manageMPath = path.join(__dirname, '../manage/index.js');
     } else {
       manageMPath = require.resolve('@linux-remote/manage', {
-        paths: [ homeDir + '/node_modules']
+        paths: [ path.join(homeDir, 'node_modules')]
       });
     }
 
