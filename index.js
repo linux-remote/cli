@@ -3,21 +3,26 @@
 "use strict";
 const path = require('path');
 const os = require('os');
-const { username, homeDir } = require('./lib/constant');
-const { warnLog } = require('./lib/util');
+const { username, homeDir } = require('./lib/constant.js');
 
+if(!process.env.NODE_ENV){
+  process.env.NODE_ENV = __dirname.indexOf(homeDir) === 0 ? 'production' : 'development';
+}
+
+
+const { warnLog } = require('./lib/util.js');
 
 const args = process.argv;
 const command = args[2];
 
 if(command === 'init'){ // sudo
 
-  const init = require('./lib/init');
+  const init = require('./lib/init.js');
   init();
 
 } else if(command === 'uninit'){ // sudo 
 
-  const uninit = require('./lib/uninit');
+  const uninit = require('./lib/uninit.js');
   uninit();
 
 } else {
@@ -32,7 +37,7 @@ if(command === 'init'){ // sudo
 
   } else { // 'linux-remote' user.
     let manageMPath;
-    if(process.env.NODE_ENV === 'debug'){
+    if(process.env.NODE_ENV !== 'production'){
       manageMPath = path.join(__dirname, '../manage/index.js');
     } else {
       manageMPath = require.resolve('@linux-remote/manage', {
