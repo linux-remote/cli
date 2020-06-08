@@ -1,6 +1,6 @@
 {
-  "name": "@linux-remote/cli",
-  "version": "4.5.0",
+  "name": "linux-remote",
+  "version": "4.6.0",
   "author": {
     "name": "Du Wei",
     "email": "hezedu@hotmail.com"
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "publish": "node ../linux-remote/up-version-map.js",
-    "p": "npm publish --access public",
+    "p": "npm publish",
     "ilint": "npm install babel-eslint eslint"
   },
   "files": [
@@ -27,6 +27,6 @@
     "node": ">=12.14.0"
   },
   "email": "hezedu@hotmail.com",
-  "description": "Linux Web Remote Desktop.",
+  "description": "linux-remote CLI tool.",
   "dependencies": {}
 }
