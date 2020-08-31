@@ -17,52 +17,48 @@ const command = args[2];
 
 if(command === 'init'){ // sudo
 
-  const init = require('./lib/init.js');
-  init();
+  require('./lib/init.js')();
 
 } else if(command === 'uninit'){ // sudo 
 
-  const uninit = require('./lib/uninit.js');
-  uninit();
+  require('./lib/uninit.js')();
 
 } else {
-  
-  // -v everybody can be use.
-  const userInfo = os.userInfo();
-  if(command !== '-v' && userInfo.username !== username){
+  // ------------ Verify user is "linux-remote" ------------
+  if(os.userInfo().username !== username){
     // switch to 'linux-remote' user
     console.log(`You need run command as '${username}' user.`);
     console.log(`You can use the following command to switch:`);
     warnLog(`\nsudo su ${username} -s /bin/bash\n`);
+    return;
+  }
+  
+  // ------------ Run as "linux-remote" user ------------
 
-  } else { // 'linux-remote' user.
-    let manageMPath;
-    if(process.env.NODE_ENV !== 'production'){
-      manageMPath = path.join(__dirname, '../manage/index.js');
-    } else {
-      manageMPath = require.resolve('@linux-remote/manage', {
-        paths: [ path.join(homeDir, 'node_modules')]
-      });
-    }
-
-
-    const managerHandler = require(manageMPath);
-    if(command === '-v' || 
-        command === 'update' ||
-        command === 'install'){
-      const cliVersion = require(path.join(__dirname, 'package.json')).version;
-      managerHandler(command, cliVersion);
-    } else {
-      managerHandler(command);
-    }
+  if(command === 'installManage'){
+    require('./lib/install-manage.js')();
+    return;
   }
 
-  // 'linux-remote' user field:
-  // proxy to @linux-remote/manage
-  // execSync(`linux-remote-manage ${command}${params}`, {
-  //   cwd: homeDir
-  // });
+  let manageMPath;
+  if(process.env.NODE_ENV !== 'production'){
+    manageMPath = path.join(__dirname, '../manage/index.js');
+  } else {
+    manageMPath = require.resolve('@linux-remote/manage', {
+      paths: [ path.join(homeDir, 'node_modules')]
+    });
+  }
 
+
+  const managerHandler = require(manageMPath);
+  if(command === '-v' || 
+      command === 'update' ||
+      command === 'install'){
+    const cliVersion = require(path.join(__dirname, 'package.json')).version;
+    managerHandler(command, cliVersion);
+  } else {
+    managerHandler(command);
+  }
 }
 
 

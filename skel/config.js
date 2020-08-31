@@ -1,6 +1,6 @@
 // The //# is option
 module.exports = {
-  port: 3000, // Website listen port.
+  port: 3001, // Website listen port.
 
   //# host: undefined, // Website listen host.
 
@@ -10,24 +10,24 @@ module.exports = {
     secure: {
       keyPath: '/xxx/xxx',
       certPath: '/xxx/xxx',
+      // or
       pfxPath:  '/xxx/xxx', // eq keyPath + certPath
-      caPath: '/xxx/xxx', // Optionally
+      
       //... Other options same as https://nodejs.org/api/tls.html#tls_tls_createsecurecontext_options
     },
   */
-
-  cookie: {
-    //# secure: undefined,
-    //# sameSite: undefined
-  },
   
-  trustProxy: false, // Boolean, If you used proxy, You need set it. 
+  trustProxy: false, // If you used proxy, You need set it. 
   // Otherwise, you will not get the real IP when you login.
-  // And you can't set it true.
+  // You can't set it true.
   // More settings:  https://expressjs.com/en/guide/behind-proxies.html
 
-  
-  client: { // Server include client. 
-    cdn: false // Is use https://unpkg.com to load client static file.
-  }
+  client: {
+    cdn: 'https://unpkg.com' // Use CDN to load client static files. The URL pattern must be the same as  https://unpkg.com. 
+    // Set it to false, will install and load client static module from server.
+  },
+
+  //# log: undefined, // undefined be equal to "/dev/null"
+
+  errLog: '/tmp/linux-remote-err.log'
 };
