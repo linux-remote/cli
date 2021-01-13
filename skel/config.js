@@ -23,8 +23,12 @@ module.exports = {
   // More settings:  https://expressjs.com/en/guide/behind-proxies.html
 
   client: {
-    cdn: 'https://unpkg.com' // Use CDN to load client static files. The URL pattern must be the same as  https://unpkg.com. 
+    cdn: false // Use CDN to load client static files. The URL pattern must be the same as  https://unpkg.com. 
     // Set it to false, will install and load client static module from server.
+    /* Some Public CDN root URLs:
+        https://unpkg.com
+        https://cdn.jsdelivr.net/npm
+    */
   },
 
   //# log: undefined, // undefined be equal to "/dev/null"
