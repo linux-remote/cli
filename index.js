@@ -27,9 +27,8 @@ if(command === 'init'){ // sudo
   // ------------ Verify user is "linux-remote" ------------
   if(os.userInfo().username !== username){
     // switch to 'linux-remote' user
-    console.log(`You need run command as '${username}' user.`);
-    console.log(`You can use the following command to switch:`);
-    warnLog(`\nsudo su ${username} -s /bin/bash\n`);
+    console.log(`For safety, You need run command as '${username}' user. You can use the following command to switch:`);
+    warnLog(`\nsudo su ${username} -s /bin/sh\n`);
     return;
   }
   
